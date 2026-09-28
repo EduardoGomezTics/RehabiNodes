@@ -4,7 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RehabiNodes - Proyecto Integrador</title>
+    <title>RehabiNodes – Telemetría IoT para Rehabilitación Física</title>
+    <meta name="description"
+        content="Sistema portátil e inalámbrico de monitoreo para rehabilitación física domiciliaria. Basado en ESP32, IMUs, ECG y tecnologías open source.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/img/logo.png">
+
+    <!-- Google Fonts: Poppins + Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <!-- Bootstrap 5 CSS (CDN) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -16,9 +25,12 @@
 <body>
 
     <!-- Menú de Navegación -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" id="mainNavbar">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="#">RehabiNodes</a>
+            <a class="navbar-brand fw-bold" href="#">
+                <img src="assets/img/logo.png" alt="RehabiNodes logo" class="brand-logo">
+                RehabiNodes
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -29,6 +41,8 @@
                     <li class="nav-item"><a class="nav-link" href="#objetivo">Objetivo</a></li>
                     <li class="nav-item"><a class="nav-link" href="#hardware">Hardware</a></li>
                     <li class="nav-item"><a class="nav-link" href="#arquitectura">Arquitectura</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#dashboards">Dashboards</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#diagramas-carcasa">Diagramas 3D</a></li>
                     <li class="nav-item"><a class="nav-link" href="#tecnologias">Tecnologías</a></li>
                 </ul>
             </div>
@@ -40,9 +54,10 @@
         <div class="container py-5">
             <h1 class="display-4 fw-bold mb-3">RehabiNodes</h1>
             <p class="lead mb-4">Sistema de monitoreo inalámbrico basado en sensores y tecnologías open source para
-                optimizar procesos de rehabilitación física domiciliaria[cite: 1].</p>
+                optimizar procesos de rehabilitación física domiciliaria.</p>
             <a href="#arquitectura" class="btn btn-light btn-lg px-4 me-md-2">Ver Arquitectura</a>
-            <a href="#" class="btn btn-outline-light btn-lg px-4">Repositorio en GitHub</a>
+            <a href="https://github.com/EduardoGomezTics/RehabiNodes.git" class="btn btn-outline-light btn-lg px-4"
+                target="_blank" rel="noopener noreferrer">Repositorio en GitHub</a>
         </div>
     </header>
 
@@ -53,7 +68,7 @@
             <p class="lead text-muted mx-auto" style="max-width: 800px;">
                 Diseñar e implementar un sistema portátil e inalámbrico para la medición y análisis del movimiento, con
                 el fin de guiar al paciente durante ejercicios de movilidad motora y apoyar la readaptación progresiva y
-                segura[cite: 1].
+                segura.
             </p>
             <div class="row mt-5">
                 <div class="col-md-4 mb-4">
@@ -61,7 +76,7 @@
                         <div class="card-body">
                             <h5 class="card-title text-primary">Medición de Movimiento</h5>
                             <p class="card-text">Uso de IMUs en 3 ejes para evaluar el rango articular y la calidad de
-                                ejecución de cada ejercicio[cite: 1].</p>
+                                ejecución de cada ejercicio.</p>
                         </div>
                     </div>
                 </div>
@@ -70,7 +85,7 @@
                         <div class="card-body">
                             <h5 class="card-title text-primary">Señal Muscular</h5>
                             <p class="card-text">Captura de la señal eléctrica muscular para detectar compensaciones y
-                                fatiga durante la sesión[cite: 1].</p>
+                                fatiga durante la sesión.</p>
                         </div>
                     </div>
                 </div>
@@ -79,7 +94,7 @@
                         <div class="card-body">
                             <h5 class="card-title text-primary">Métricas Clínicas</h5>
                             <p class="card-text">Proporcionar métricas de seguimiento terapéutico como rango de
-                                movimiento y simetría al clínico[cite: 1].</p>
+                                movimiento y simetría al clínico.</p>
                         </div>
                     </div>
                 </div>
@@ -88,26 +103,26 @@
     </section>
 
     <!-- Sección: Hardware / Nodos -->
-    <section id="hardware" class="py-5 bg-light">
+    <section id="hardware" class="py-5">
         <div class="container">
             <h2 class="text-center mb-5">Hardware Sensorial</h2>
-            <div class="row align-items-center">
-                <div class="col-lg-6 mb-4">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-6 mb-4 ps-4">
                     <h4>Arm Node (Nodo de Brazo)</h4>
                     <p>Captura la orientación y el movimiento en los 3 ejes, junto con la actividad eléctrica
-                        muscular[cite: 1].</p>
+                        muscular.</p>
                     <ul>
-                        <li><strong>Microcontrolador:</strong> ESP32-C3 Super Mini[cite: 1].</li>
-                        <li><strong>IMU:</strong> MPU9250[cite: 1].</li>
-                        <li><strong>Sensor ECG/EMG:</strong> AD8232[cite: 1].</li>
+                        <li><strong>Microcontrolador:</strong> ESP32-C3 Super Mini.</li>
+                        <li><strong>IMU:</strong> MPU9250.</li>
+                        <li><strong>Sensor ECG/EMG:</strong> AD8232.</li>
                     </ul>
                 </div>
-                <div class="col-lg-6 mb-4">
+                <div class="col-lg-6 mb-4 ps-4">
                     <h4>Forearm Node (Nodo de Antebrazo)</h4>
-                    <p>Mide la cinemática complementaria para lograr el mapeo articular completo del brazo[cite: 1].</p>
+                    <p>Mide la cinemática complementaria para lograr el mapeo articular completo del brazo.</p>
                     <ul>
-                        <li><strong>Microcontrolador:</strong> ESP32-C3 Super Mini[cite: 1].</li>
-                        <li><strong>IMU:</strong> MPU9250[cite: 1].</li>
+                        <li><strong>Microcontrolador:</strong> ESP32-C3 Super Mini.</li>
+                        <li><strong>IMU:</strong> MPU9250.</li>
                     </ul>
                 </div>
             </div>
@@ -119,7 +134,7 @@
         <div class="container text-center">
             <h2 class="mb-5">Arquitectura y Flujo de Datos</h2>
             <p class="lead mb-4">Los datos se transmiten a través de ESP-NOW hacia un nodo maestro, el cual utiliza LoRa
-                para llegar a un Gateway celular (LILYGO) que publica en un broker MQTT[cite: 1].</p>
+                para llegar a un Gateway celular (LILYGO) que publica en un broker MQTT.</p>
 
             <div class="row justify-content-center mt-5">
                 <div class="col-lg-10">
@@ -134,15 +149,15 @@
                     <p class="text-muted small">El diagrama ilustra el flujo de los datos desde la captura anatómica
                         hasta su visualización: los nodos de brazo y antebrazo transmiten por ESP-NOW (2.4 GHz) al nodo
                         maestro; este retransmite por LoRa (915 MHz) al Gateway celular, el cual publica en un broker
-                        MQTT (EMQX) a través de TCP/IP sobre red celular[cite: 2]. Finalmente, los microservicios en
+                        MQTT (EMQX) a través de TCP/IP sobre red celular. Finalmente, los microservicios en
                         Docker consumen los datos para su almacenamiento en InfluxDB y visualización tanto en MediaPipe
-                        como en dashboards clínicos[cite: 2].</p>
+                        como en dashboards clínicos.</p>
                 </div>
             </div>
         </div>
     </section>
     <!-- Sección: Dashboards y Visualización -->
-    <section id="dashboards" class="py-5 bg-light">
+    <section id="dashboards" class="py-5">
         <div class="container">
             <h2 class="text-center mb-5">Interfaz y Visualización de Datos</h2>
 
@@ -165,7 +180,7 @@
                     <!-- Slide 1: Grafana -->
                     <div class="carousel-item active">
                         <!-- Reemplazar el src con tu captura real -->
-                        <img src="assets/img/grafana_dashboard.jpg" class="d-block w-100"
+                        <img src="assets/img/grafana_dashboard.png" class="d-block w-100"
                             alt="Dashboard clínico en Grafana" style="min-height: 400px; object-fit: cover;">
                         <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded px-3 py-2 mb-4">
                             <h5>Dashboard Clínico (Grafana)</h5>
@@ -175,7 +190,7 @@
 
                     <!-- Slide 2: Node-RED -->
                     <div class="carousel-item">
-                        <img src="assets/img/nodered_panel.jpg" class="d-block w-100" alt="Panel de control en Node-RED"
+                        <img src="assets/img/nodered_panel.png" class="d-block w-100" alt="Panel de control en Node-RED"
                             style="min-height: 400px; object-fit: cover;">
                         <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded px-3 py-2 mb-4">
                             <h5>Panel de Control (Node-RED)</h5>
@@ -185,7 +200,7 @@
 
                     <!-- Slide 3: MediaPipe -->
                     <div class="carousel-item">
-                        <img src="assets/img/mediapipe_view.jpg" class="d-block w-100"
+                        <img src="assets/img/mediapipe_view.png" class="d-block w-100"
                             alt="Estimación de postura en MediaPipe" style="min-height: 400px; object-fit: cover;">
                         <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded px-3 py-2 mb-4">
                             <h5>Estimación Articular (MediaPipe)</h5>
@@ -208,26 +223,186 @@
             </div>
         </div>
     </section>
+
+    <!-- Sección: Diagramas y carcasa 3D -->
+    <section id="diagramas-carcasa" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Diagramas y Carcasa 3D</h2>
+
+            <!-- Subsección: Esquemas Eléctricos -->
+            <h4 class="section-subtitle mb-4">Diagramas de Conexión Física</h4>
+            <div class="row g-4 mb-5">
+                <!-- Nodo de Brazo -->
+                <div class="col-md-4 mb-4">
+                    <div class="card diagram-card h-100">
+                        <div class="diagram-img-wrapper">
+                            <img src="assets/img/Connections-ESP32-LoRaSX1278.svg" class="card-img-top p-3"
+                                alt="Conexión Nodo de Brazo">
+                        </div>
+                        <div class="card-body text-center">
+                            <h6 class="card-title fw-bold">Nodo de Brazo (Arm Node)</h6>
+                            <p class="card-text small text-muted">ESP32-C3 Super Mini + MPU9250 (IMU) + AD8232 (ECG/EMG)</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Nodo Maestro -->
+                <div class="col-md-4 mb-4">
+                    <div class="card diagram-card h-100">
+                        <div class="diagram-img-wrapper">
+                            <img src="assets/img/Connections-ESP32-LoRaSX1278.svg" class="card-img-top p-3"
+                                alt="Conexión Nodo Maestro">
+                        </div>
+                        <div class="card-body text-center">
+                            <h6 class="card-title fw-bold">Nodo Maestro</h6>
+                            <p class="card-text small text-muted">ESP32 + Módulo LoRa Ra-02 SX1278</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Gateway -->
+                <div class="col-md-4 mb-4">
+                    <div class="card diagram-card h-100">
+                        <div class="diagram-img-wrapper">
+                            <img src="assets/img/Connections-Lilygo7070g-LoRaSX1278.svg" class="card-img-top p-3"
+                                alt="Conexión Gateway">
+                        </div>
+                        <div class="card-body text-center">
+                            <h6 class="card-title fw-bold">Gateway Celular</h6>
+                            <p class="card-text small text-muted">LILYGO T-SIM7070G + Módulo LoRa Ra-02 SX1278</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subsección: Visor 3D Interactivo -->
+            <div class="mt-5">
+                <h4 class="section-subtitle text-center mb-3">Exploración Interactiva de la Carcasa</h4>
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <!-- Contenedor para el canvas de Three.js -->
+                        <div id="visor-3d" class="visor-3d-container"></div>
+                        <p class="text-center text-muted small mt-2">
+                            <span class="visor-hint">↔ Arrastra para rotar · ⟳ Scroll para zoom</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Import Map para cargar Three.js como módulos ES6 -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+
+    <!-- Script de Renderizado 3D -->
+    <script type="module">
+        import * as THREE from 'three';
+        import { STLLoader } from 'three/addons/loaders/STLLoader.js';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+        // 1. Configuración básica de la escena
+        const container = document.getElementById('visor-3d');
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0xe9ecef);
+
+        // 2. Cámara
+        const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 1, 1000);
+        camera.position.set(0, 100, 150);
+
+        // 3. Renderizador
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        container.appendChild(renderer.domElement);
+
+        // 4. Controles (rotar y zoom)
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+
+        // 5. Iluminación
+        scene.add(new THREE.AmbientLight(0x404040, 1.5));
+
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
+        directionalLight.position.set(1, 1, 1).normalize();
+        scene.add(directionalLight);
+
+        const backLight = new THREE.DirectionalLight(0xffffff, 1);
+        backLight.position.set(-1, -1, -1).normalize();
+        scene.add(backLight);
+
+        // 6. Cargar el archivo STL
+        const loader = new STLLoader();
+
+        loader.load('assets/3D-Model/BottomCase.stl', function (geometry) {
+            const material = new THREE.MeshPhongMaterial({
+                color: 0x0d47a1,
+                specular: 0x111111,
+                shininess: 100
+            });
+
+            const mesh = new THREE.Mesh(geometry, material);
+
+            // Centrar automáticamente la pieza
+            geometry.computeBoundingBox();
+            const center = geometry.boundingBox.getCenter(new THREE.Vector3());
+            mesh.position.sub(center);
+
+            // Rotar la pieza para alinearla al plano horizontal
+            mesh.rotation.x = -Math.PI / 2;
+
+            scene.add(mesh);
+        });
+
+        // 7. Ciclo de animación
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // 8. Adaptabilidad al redimensionar pantalla
+        window.addEventListener('resize', onWindowResize, false);
+        function onWindowResize() {
+            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.clientWidth, container.clientHeight);
+        }
+    </script>
+
     <!-- Sección: Tecnologías -->
-    <section id="tecnologias" class="py-5 bg-dark text-white">
+    <section id="tecnologias" class="py-5">
         <div class="container text-center">
             <h2 class="mb-5">Tecnologías Open Source</h2>
-            <div class="row">
-                <div class="col-md-3 col-6 mb-4">
-                    <h5>Node-RED</h5>
-                    <p class="small">Dashboard de integración[cite: 1].</p>
+            <div class="row g-3 justify-content-center">
+                <div class="col-md-3 col-6">
+                    <div class="tech-tile">
+                        <h5>Node-RED</h5>
+                        <p class="small">Dashboard de integración.</p>
+                    </div>
                 </div>
-                <div class="col-md-3 col-6 mb-4">
-                    <h5>Three.js</h5>
-                    <p class="small">Visualización 3D en tiempo real[cite: 1].</p>
+                <div class="col-md-3 col-6">
+                    <div class="tech-tile">
+                        <h5>Three.js</h5>
+                        <p class="small">Visualización 3D en tiempo real.</p>
+                    </div>
                 </div>
-                <div class="col-md-3 col-6 mb-4">
-                    <h5>Grafana & InfluxDB</h5>
-                    <p class="small">Análisis histórico de datos[cite: 1].</p>
+                <div class="col-md-3 col-6">
+                    <div class="tech-tile">
+                        <h5>Grafana &amp; InfluxDB</h5>
+                        <p class="small">Análisis histórico de datos.</p>
+                    </div>
                 </div>
-                <div class="col-md-3 col-6 mb-4">
-                    <h5>Docker</h5>
-                    <p class="small">Contenerización de servicios[cite: 1].</p>
+                <div class="col-md-3 col-6">
+                    <div class="tech-tile">
+                        <h5>Docker</h5>
+                        <p class="small">Contenerización de servicios.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -236,7 +411,7 @@
     <!-- Footer -->
     <footer class="bg-black text-white text-center py-4">
         <div class="container">
-            <p class="mb-1 fw-bold">Proyecto Integrador - Ingeniería en Tecnologías de la Información y Comunicaciones
+            <p class="mb-1 fw-bold">Ingeniería en Tecnologías de la Información y Comunicaciones
                 (ITICS)</p>
             <p class="mb-2">Instituto Tecnológico Superior del Occidente del Estado de Hidalgo</p>
             <p class="small text-muted mb-0">&copy; 2026 RehabiNodes. Desarrollado para la mejora continua en telemetría

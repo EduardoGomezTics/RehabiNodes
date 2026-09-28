@@ -1,48 +1,599 @@
-/* css/style.css */
-html {
-    scroll-behavior: smooth;
+/* ============================================================
+   css/style.css — RehabiNodes Design System
+   MedTech / Open-Source Hardware aesthetic
+   ============================================================ */
+
+/* ── 0. Google Fonts ──────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+
+/* ── 1. Design Tokens (CSS Variables) ────────────────────── */
+:root {
+    /* Brand palette */
+    --rn-bg:            #f4f6f9;
+    --rn-surface:       #ffffff;
+    --rn-dark:          #1a1f2e;
+    --rn-gray:          #6b7280;
+    --rn-gray-light:    #e9ecef;
+
+    /* Acentos inspirados en el logo */
+    --rn-red:           #c0392b;
+    --rn-red-dark:      #96281b;
+    --rn-red-glow:      rgba(192,57,43,.18);
+    --rn-blue:          #1565c0;
+    --rn-blue-light:    #1976d2;
+    --rn-blue-glow:     rgba(21,101,192,.15);
+
+    /* Hero gradient */
+    --rn-hero-grad: linear-gradient(135deg, #0d1b2a 0%, #1a3a5c 55%, #1565c0 100%);
+
+    /* Shadows */
+    --rn-shadow-sm:           0 2px 8px rgba(0,0,0,.08);
+    --rn-shadow-md:           0 6px 24px rgba(0,0,0,.12);
+    --rn-shadow-lg:           0 16px 48px rgba(0,0,0,.16);
+    --rn-shadow-card-hover:   0 12px 36px rgba(21,101,192,.18);
+
+    /* Radii */
+    --rn-radius-sm: 8px;
+    --rn-radius-md: 14px;
+    --rn-radius-lg: 20px;
+
+    /* Transitions */
+    --rn-transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+/* ── 2. Base & Typography ─────────────────────────────────── */
+html { scroll-behavior: smooth; }
 
 body {
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: var(--rn-bg);
+    color: var(--rn-dark);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
 }
 
-/* Navbar styling on scroll */
+h1, h2, h3, h4, h5, h6, .navbar-brand {
+    font-family: 'Poppins', system-ui, sans-serif;
+    font-weight: 700;
+    color: var(--rn-dark);
+    letter-spacing: -0.02em;
+}
+
+section h2 {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    position: relative;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+section h2::after {
+    content: '';
+    display: block;
+    width: 48px;
+    height: 4px;
+    background: var(--rn-red);
+    border-radius: 2px;
+    margin: 0.55rem auto 0;
+}
+
+/* ── 3. Bootstrap Overrides ──────────────────────────────── */
+.text-primary  { color: var(--rn-blue) !important; }
+.bg-primary    { background-color: var(--rn-blue) !important; }
+
+/* ── 4. Navbar — Glassmorphism ───────────────────────────── */
 .navbar {
-    transition: background-color 0.3s ease;
+    background: rgba(13, 27, 42, 0.82) !important;
+    backdrop-filter: blur(14px) saturate(160%);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    border-bottom: 1px solid rgba(255,255,255,.07);
+    transition: var(--rn-transition);
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
 }
 
-/* Custom Tech Colors */
-.text-primary {
-    color: #0d47a1 !important;
-    /* Clean Medical/Tech Blue */
+.navbar.navbar-scrolled {
+    background: rgba(10, 21, 34, 0.97) !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,.35);
 }
 
-.bg-primary {
-    background-color: #0d47a1 !important;
+.navbar-brand {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #ffffff !important;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    letter-spacing: -0.01em;
 }
 
+.navbar-brand img.brand-logo {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    border-radius: 6px;
+    filter: drop-shadow(0 0 4px rgba(255,255,255,.2));
+}
+
+.nav-link {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 0.875rem;
+    color: rgba(255,255,255,.75) !important;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 0.45rem 0.85rem !important;
+    border-radius: 6px;
+    transition: var(--rn-transition);
+}
+
+.nav-link:hover, .nav-link.active {
+    color: #ffffff !important;
+    background: rgba(255,255,255,.1);
+}
+
+/* ── 5. Hero Section ─────────────────────────────────────── */
+#inicio {
+    background: var(--rn-hero-grad);
+    position: relative;
+    overflow: hidden;
+    min-height: 88vh;
+    display: flex;
+    align-items: center;
+}
+
+#inicio::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    animation: gridPulse 8s ease-in-out infinite alternate;
+}
+
+@keyframes gridPulse {
+    from { opacity: 0.4; }
+    to   { opacity: 1;   }
+}
+
+#inicio::after {
+    content: '';
+    position: absolute;
+    top: -120px;
+    right: -120px;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle, rgba(192,57,43,.25) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+#inicio .container { position: relative; z-index: 1; }
+
+#inicio h1 {
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    color: #ffffff;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+    text-shadow: 0 2px 20px rgba(0,0,0,.3);
+}
+
+#inicio .lead {
+    color: rgba(255,255,255,.82);
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 400;
+    text-shadow: 0 1px 8px rgba(0,0,0,.2);
+}
+
+#inicio .btn-light {
+    background: #ffffff;
+    color: var(--rn-dark) !important;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--rn-radius-sm);
+    padding: 0.75rem 2rem;
+    transition: var(--rn-transition);
+    box-shadow: var(--rn-shadow-md);
+}
+
+#inicio .btn-light:hover {
+    background: var(--rn-red);
+    color: #ffffff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(192,57,43,.45);
+}
+
+#inicio .btn-outline-light {
+    border: 2px solid rgba(255,255,255,.55);
+    color: #ffffff !important;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    border-radius: var(--rn-radius-sm);
+    padding: 0.75rem 2rem;
+    background: transparent;
+    transition: var(--rn-transition);
+}
+
+#inicio .btn-outline-light:hover {
+    border-color: #ffffff;
+    background: rgba(255,255,255,.12);
+    transform: translateY(-2px);
+}
+
+/* ── 6. Section Backgrounds ──────────────────────────────── */
+#objetivo         { background-color: var(--rn-surface); }
+#hardware         { background-color: var(--rn-bg); }
+#arquitectura     { background-color: var(--rn-surface); }
+#dashboards       { background-color: var(--rn-bg); }
+#diagramas-carcasa { background-color: var(--rn-surface); }
+
+/* ── 7. Cards ────────────────────────────────────────────── */
 .card {
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    background: var(--rn-surface);
+    border: 1px solid var(--rn-gray-light) !important;
+    border-radius: var(--rn-radius-md) !important;
+    box-shadow: var(--rn-shadow-sm);
+    transition: var(--rn-transition);
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+    transform: translateY(-6px);
+    box-shadow: var(--rn-shadow-card-hover) !important;
+    border-color: rgba(21,101,192,.25) !important;
 }
 
-/* Tech Stack Badge Colors */
-.badge-nodered {
-    background-color: #8f0000;
-    color: white;
+.card-body { padding: 1.75rem; }
+
+.card-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--rn-blue) !important;
+    margin-bottom: 0.65rem;
 }
 
-.badge-grafana {
-    background-color: #f05a28;
-    color: white;
+.card::before {
+    content: '';
+    display: block;
+    height: 3px;
+    width: 40px;
+    background: var(--rn-red);
+    border-radius: 2px 2px 0 0;
+    margin: 0 0 0 1.75rem;
+    transition: width 0.3s ease;
 }
 
-.badge-docker {
-    background-color: #0db7ed;
-    color: black;
+.card:hover::before { width: 80px; }
+
+/* Diagram cards — image-first variant (no top accent bar) */
+.card.diagram-card::before {
+    display: none;
+}
+
+.card.diagram-card {
+    overflow: hidden;
+}
+
+.diagram-img-wrapper {
+    background: var(--rn-bg);
+    border-bottom: 1px solid var(--rn-gray-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 180px;
+    transition: var(--rn-transition);
+}
+
+.card.diagram-card:hover .diagram-img-wrapper {
+    background: var(--rn-blue-glow);
+}
+
+.diagram-img-wrapper img {
+    max-height: 200px;
+    object-fit: contain;
+    transition: var(--rn-transition);
+}
+
+.card.diagram-card:hover .diagram-img-wrapper img {
+    transform: scale(1.04);
+}
+
+/* ── 8. Hardware Section ─────────────────────────────────── */
+#hardware h4 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: var(--rn-blue);
+    margin-bottom: 0.5rem;
+}
+
+#hardware ul li {
+    margin-bottom: 0.4rem;
+    color: var(--rn-gray);
+}
+
+#hardware ul li strong { color: var(--rn-dark); }
+
+#hardware .col-lg-6 { position: relative; }
+
+#hardware .col-lg-6::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, var(--rn-red), var(--rn-blue));
+    border-radius: 2px;
+}
+
+/* ── 9. Architecture Section ─────────────────────────────── */
+#arquitectura img {
+    border-radius: var(--rn-radius-lg) !important;
+    box-shadow: var(--rn-shadow-lg) !important;
+    border: 1px solid var(--rn-gray-light) !important;
+    transition: var(--rn-transition);
+}
+
+#arquitectura img:hover {
+    box-shadow: 0 24px 64px rgba(21,101,192,.20) !important;
+    transform: scale(1.01);
+}
+
+#arquitectura .lead {
+    color: var(--rn-gray);
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+#arquitectura .text-muted.small {
+    color: var(--rn-gray) !important;
+    font-size: 0.85rem;
+    line-height: 1.8;
+    padding: 1rem 1.5rem;
+    background: var(--rn-bg);
+    border-radius: var(--rn-radius-sm);
+    border-left: 3px solid var(--rn-blue);
+}
+
+/* ── 9b. Diagramas & 3D Viewer Section ───────────────────── */
+.section-subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--rn-blue);
+    position: relative;
+    padding-left: 1rem;
+}
+
+.section-subtitle::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.15em;
+    bottom: 0.15em;
+    width: 3px;
+    background: var(--rn-red);
+    border-radius: 2px;
+}
+
+.section-subtitle.text-center {
+    padding-left: 0;
+}
+
+.section-subtitle.text-center::before {
+    display: none;
+}
+
+/* 3D Viewer container */
+.visor-3d-container {
+    width: 100%;
+    height: 500px;
+    background-color: var(--rn-bg);
+    border-radius: var(--rn-radius-lg);
+    border: 1px solid var(--rn-gray-light);
+    box-shadow: var(--rn-shadow-md);
+    cursor: grab;
+    overflow: hidden;
+    transition: var(--rn-transition);
+}
+
+.visor-3d-container:active {
+    cursor: grabbing;
+}
+
+.visor-3d-container:hover {
+    box-shadow: var(--rn-shadow-lg);
+    border-color: rgba(21,101,192,.2);
+}
+
+.visor-hint {
+    display: inline-block;
+    padding: 0.3rem 0.9rem;
+    background: var(--rn-bg);
+    border: 1px solid var(--rn-gray-light);
+    border-radius: 20px;
+    font-size: 0.78rem;
+    color: var(--rn-gray);
+    letter-spacing: 0.02em;
+}
+
+/* ── 10. Carousel ────────────────────────────────────────── */
+#dashboardCarousel {
+    border-radius: var(--rn-radius-lg) !important;
+    box-shadow: var(--rn-shadow-lg) !important;
+    overflow: hidden;
+}
+
+.carousel-item img {
+    min-height: 420px;
+    object-fit: cover;
+}
+
+.carousel-caption {
+    background: linear-gradient(135deg,
+        rgba(10,21,34,.88) 0%,
+        rgba(21,101,192,.78) 100%) !important;
+    border-radius: var(--rn-radius-sm) !important;
+    padding: 0.9rem 1.4rem !important;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,.12);
+}
+
+.carousel-caption h5 {
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+}
+
+.carousel-caption p {
+    color: rgba(255,255,255,.85);
+    font-size: 0.85rem;
+    margin-bottom: 0;
+}
+
+.carousel-indicators [data-bs-target] {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(255,255,255,.45);
+    border: none;
+    transition: var(--rn-transition);
+}
+
+.carousel-indicators .active {
+    background-color: var(--rn-red);
+    transform: scale(1.3);
+}
+
+/* ── 11. Tecnologias Section ─────────────────────────────── */
+#tecnologias {
+    background: linear-gradient(135deg, #0d1b2a 0%, #1a1f2e 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+#tecnologias::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+    background-size: 32px 32px;
+    pointer-events: none;
+}
+
+#tecnologias h2 { color: #ffffff; }
+#tecnologias h2::after { background: var(--rn-red); }
+
+#tecnologias .tech-tile {
+    padding: 1.5rem 1rem;
+    border-radius: var(--rn-radius-md);
+    border: 1px solid rgba(255,255,255,.07);
+    background: rgba(255,255,255,.04);
+    transition: var(--rn-transition);
+    cursor: default;
+    position: relative;
+    z-index: 1;
+}
+
+#tecnologias .tech-tile:hover {
+    background: rgba(21,101,192,.18);
+    border-color: rgba(21,101,192,.4);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 28px rgba(21,101,192,.25);
+}
+
+#tecnologias h5 {
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+}
+
+#tecnologias p.small {
+    color: rgba(255,255,255,.55);
+    font-size: 0.82rem;
+    margin-bottom: 0;
+}
+
+/* Tech Badges */
+.badge-nodered   { background-color: #8f0000; color: #fff; }
+.badge-grafana   { background-color: #f05a28; color: #fff; }
+.badge-docker    { background-color: #0db7ed; color: #000; }
+.badge-influx    { background-color: #22adf6; color: #000; }
+.badge-mediapipe { background-color: #34a853; color: #fff; }
+.badge-espnow    { background-color: var(--rn-red); color: #fff; }
+.badge-lora      { background-color: #6f42c1; color: #fff; }
+.badge-mqtt      { background-color: #ff6900; color: #fff; }
+
+/* ── 12. Footer ──────────────────────────────────────────── */
+footer {
+    background: #080e18 !important;
+    border-top: 1px solid rgba(255,255,255,.07);
+}
+
+footer p { color: rgba(255,255,255,.65); font-size: 0.875rem; margin-bottom: 0.35rem; }
+footer p.fw-bold { color: rgba(255,255,255,.9); font-family: 'Poppins', sans-serif; font-size: 0.9rem; }
+footer p.small.text-muted { color: rgba(255,255,255,.35) !important; }
+
+/* ── 13. Utilities ───────────────────────────────────────── */
+[id] { scroll-margin-top: 74px; }
+
+.lead {
+    font-size: clamp(0.98rem, 1.8vw, 1.1rem);
+    font-weight: 400;
+    color: var(--rn-gray);
+}
+
+.btn-rn-cta {
+    background: var(--rn-red);
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--rn-radius-sm);
+    padding: 0.65rem 1.75rem;
+    transition: var(--rn-transition);
+}
+
+.btn-rn-cta:hover {
+    background: var(--rn-red-dark);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(192,57,43,.4);
+}
+
+/* ── 14. Responsive ──────────────────────────────────────── */
+@media (max-width: 767.98px) {
+    #inicio { min-height: 70vh; }
+    #hardware .col-lg-6::before { display: none; }
+
+    .visor-3d-container {
+        height: 320px;
+    }
+
+    .nav-link {
+        font-size: 0.8rem;
+        padding: 0.35rem 0.65rem !important;
+    }
+}
+
+/* ── 15. Reduced Motion ─────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
 }
