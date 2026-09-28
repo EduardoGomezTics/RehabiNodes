@@ -1,0 +1,48 @@
+/* css/style.css */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Navbar styling on scroll */
+.navbar {
+    transition: background-color 0.3s ease;
+}
+
+/* Custom Tech Colors */
+.text-primary {
+    color: #0d47a1 !important;
+    /* Clean Medical/Tech Blue */
+}
+
+.bg-primary {
+    background-color: #0d47a1 !important;
+}
+
+.card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+}
+
+/* Tech Stack Badge Colors */
+.badge-nodered {
+    background-color: #8f0000;
+    color: white;
+}
+
+.badge-grafana {
+    background-color: #f05a28;
+    color: white;
+}
+
+.badge-docker {
+    background-color: #0db7ed;
+    color: black;
+}
